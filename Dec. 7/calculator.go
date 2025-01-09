@@ -59,42 +59,14 @@ func main() {
 		lines = append(lines, scanner.Text())
 	}
 	sum := 0
-	alt_sum := 0
 	conc_sum := 0
 	for _, line := range lines {
 		result, _ := strconv.Atoi(strings.Split(line, ":")[0])
 		variables := strings.Split(strings.Split(line, ": ")[1], " ")
-		/*posibilities := make([]int, int(math.Pow(2, float64(len(variables)))))
-		for i := 0; i < len(variables); i++ {
-			multiply := true
-			for j := 0; j < len(posibilities); j++ {
-				temp_var, _ := strconv.Atoi(variables[i])
 
-				if j%(int(math.Pow(2, float64(len(variables)-i)))) == 0 {
-					multiply = !multiply
-				}
-
-				if i == 0 {
-					posibilities[j] += temp_var
-				} else {
-					if multiply {
-						posibilities[j] = posibilities[j] * temp_var
-					} else {
-						posibilities[j] += temp_var
-					}
-				}
-
-			}
-		}
-		for _, posposibility := range posibilities {
-			if posposibility == result {
-				sum += result
-				break
-			}
-		}*/
 		_, is_true := find_value(result, 0, variables, false)
 		if is_true {
-			alt_sum += result
+			sum += result
 		}
 		_, is_true = find_value(result, 0, variables, true)
 		if is_true {
@@ -103,7 +75,6 @@ func main() {
 	}
 
 	fmt.Println(sum)
-	fmt.Println(alt_sum)
 	fmt.Println(conc_sum)
 
 }
